@@ -11,7 +11,20 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::pattern('id', '[0-9]+');
+
+Route::get('/', array('as' => 'root', 'uses' => 'IndexController@showIndex'));
+
+
+
+
+Route::when('do/*', 'auth');
+
+Route::get('do', array('before' => 'auth', 'uses' => 'AdminController@showAdmin'));
+
+
+
+
+Route::get ('/login', array('as' => 'login.get', 'uses' => 'SecurityController@loginAction'));
+Route::post('/login', array('as' => 'login.post', 'before' => 'csrf', 'uses' => 'SecurityController@loginAttempt'));
+Route::get ('/logout', 'SecurityController@logoutAction');
