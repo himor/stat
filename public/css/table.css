@@ -1,0 +1,14 @@
+table.table
+{
+    width: 100%;
+}
+
+table.table thead th
+{
+    border-bottom:1px solid #999;
+}
+
+table.table tbody tr:nth-child(even)
+{
+    background-color: #eee;
+}

@@ -61,4 +61,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->email;
 	}
 
+    /**
+     * User entity has one-to-many Tokens
+     *
+     * @return mixed
+     */
+    public function tokens()
+    {
+        return $this->hasMany('Tokens');
+    }
+
 }

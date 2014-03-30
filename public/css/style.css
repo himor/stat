@@ -88,13 +88,62 @@ form.login_form
     width:350px;
 }
 
-.error
+.error,
+.alert
 {
     color:red;
+}
+
+.success
+{
+    color:green;
 }
 
 .alert
 {
     font-weight: bold;
-    color: red;
+}
+
+.hidden
+{
+    display:none;
+}
+
+.grey,
+.grey *
+{
+    color:#999;
+}
+
+.mono
+{
+    font-family: monospace;
+}
+
+.sidebar
+{
+    float:left;
+    width:150px;
+}
+
+.sidebar + .block
+{
+    margin-left:160px;
+}
+
+/* SIDEBAR */
+.sidebar ul
+{
+    list-style-type: none;
+    padding:0px;
+}
+
+.sidebar ul a
+{
+    text-decoration: none;
+}
+
+.sidebar ul li.active a
+{
+    font-weight: bold;
 }

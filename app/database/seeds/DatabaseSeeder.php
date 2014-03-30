@@ -24,6 +24,13 @@ class DatabaseSeeder extends Seeder {
             )
         );
 
+        DB::table('tokens')->insert(
+            array(
+                'user_id'  => 1,
+                'token'    => Hash::make('token'),
+            )
+        );
+
 
 
 	}

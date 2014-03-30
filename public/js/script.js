@@ -4,8 +4,11 @@
 
 $(function(){
 
-    $('button.start_over').on('click', function(){
-        window.location.href = '/';
+    $('.unhide').on('click', function(){
+        var $this = $(this),
+            $id   = $this.attr('id');
+        $this.remove();
+        $('#token_' + $id).show();
     });
 
 });
