@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Class AdminController
+ * Does all the administrative actions
+ * For example: creation of users or tokens
+ * @author Mike Gordo <mgordo@live.com>
+ */
 class AdminController extends BaseController {
 
     protected $layout = 'layout.admin';

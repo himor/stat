@@ -9,7 +9,7 @@
     <h3>Tokens</h3>
 
     <div class="config">
-        <a></a>
+        <a href="{{ URL::route('do/new.token') }}">Create new</a>
     </div>
 
     <table class="table">
@@ -26,11 +26,11 @@
         <tbody>
         @foreach ($tokens as $token)
         <tr @if (!$token->active) class="grey" @endif id="tr_{{ $token->id }}">
-            <td>{{ $token->id }}</td>
-            <td>{{ $token->user->email }}</td>
+            <td><a href="{{ URL::route('do/token', $token->id) }}">{{ $token->id }}</a></td>
+            <td><a href="{{ URL::route('do/user', $token->user_id) }}">{{ $token->user->email }}</a></td>
             <td>
                 <div id="token_a_{{ $token->id }}" class="hidden mono">
-                    <a href="{{ URL::to('do/tokens', $token->id) }}">{{ $token->token }}</a>
+                    <a href="{{ URL::route('do/token', $token->id) }}">{{ $token->token }}</a>
                 </div>
                 <a href="#" class="unhide" id="a_{{ $token->id }}">Show</a>
             </td>

@@ -147,3 +147,15 @@ form.login_form
 {
     font-weight: bold;
 }
+
+div.config
+{
+    padding:3px 0 10px;
+}
+
+div.config a
+{
+    font-size:90%;
+    text-decoration: none;
+    font-weight: bold;
+}

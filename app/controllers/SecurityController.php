@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class SecurityController
+ * Responsible for logging in and out
+ * @author Mike Gordo <mgordo@live.com>
+ */
 class SecurityController extends BaseController {
 
     protected $layout = 'layout.security';
@@ -17,6 +22,10 @@ class SecurityController extends BaseController {
      */
     public function loginAttempt()
     {
+        if (!Request::isMethod('post')) {
+            return Redirect::route('login.get');
+        }
+
         $email = Input::get('email', null);
         $passw = Input::get('password', null);
 
