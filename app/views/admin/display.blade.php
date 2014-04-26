@@ -30,7 +30,7 @@
             <td><a href="{{ URL::route('do/user', $token->user_id) }}">{{ $token->user->email }}</a></td>
             <td>
                 <div id="token_a_{{ $token->id }}" class="hidden mono">
-                    <a href="{{ URL::route('do/token', $token->id) }}">{{ $token->token }}</a>
+                    <a href="{{ URL::route('do/token', $token->id) }}">{{ $token->value }}</a>
                 </div>
                 <a href="#" class="unhide" id="a_{{ $token->id }}">Show</a>
             </td>
@@ -41,7 +41,5 @@
         @endforeach
         </tbody>
     </table>
-
-
 
 @stop

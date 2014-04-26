@@ -29,13 +29,25 @@ Route::get('do/tokens', array(
     )
 );
 Route::get('do/tokens/{id}', array(
-        'as'   => 'do/token',
-        'uses' => 'AdminController@tokenEditAdmin'
+        'as'     => 'do/token',
+        'uses'   => 'AdminController@tokenEditAdmin'
     )
 );
 Route::get('do/tokens/new', array(
-        'as'   => 'do/new.token',
-        'uses' => 'AdminController@tokenNewAdmin'
+        'as'     => 'do/new.token',
+        'uses'   => 'AdminController@tokenNewAdmin'
+    )
+);
+Route::post('do/tokens/{id}', array(
+        'as'     => 'do/token',
+        'before' => 'csrf',
+        'uses'   => 'AdminController@tokenEditAdmin'
+    )
+);
+Route::post('do/tokens/new', array(
+        'as'     => 'do/new.token',
+        'before' => 'csrf',
+        'uses'   => 'AdminController@tokenNewAdmin'
     )
 );
 
@@ -45,13 +57,25 @@ Route::get('do/users', array(
     )
 );
 Route::get('do/users/{id}', array(
-        'as'   => 'do/user',
-        'uses' => 'AdminController@usersEditAdmin'
+        'as'     => 'do/user',
+        'uses'   => 'AdminController@usersEditAdmin'
     )
 );
 Route::get('do/users/new', array(
-        'as'   => 'do/new.user',
-        'uses' => 'AdminController@userNewAdmin'
+        'as'     => 'do/new.user',
+        'uses'   => 'AdminController@userNewAdmin'
+    )
+);
+Route::post('do/users/{id}', array(
+        'as'     => 'do/user',
+        'before' => 'csrf',
+        'uses'   => 'AdminController@usersEditAdmin'
+    )
+);
+Route::post('do/users/new', array(
+        'as'     => 'do/new.user',
+        'before' => 'csrf',
+        'uses'   => 'AdminController@userNewAdmin'
     )
 );
 
