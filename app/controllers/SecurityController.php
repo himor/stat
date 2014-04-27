@@ -3,10 +3,11 @@
 /**
  * Class SecurityController
  * Responsible for logging in and out
+ *
  * @author Mike Gordo <mgordo@live.com>
  */
-class SecurityController extends BaseController {
-
+class SecurityController extends BaseController
+{
     protected $layout = 'layout.security';
 
     /**
@@ -37,7 +38,7 @@ class SecurityController extends BaseController {
                 ->with('message', 'There were validation errors.');
         }
 
-        if (Auth::attempt(array('email' => $email, 'password' => $passw, 'blocked' => false))) {
+        if (Auth::attempt(['email' => $email, 'password' => $passw, 'blocked' => false])) {
             return Redirect::intended('do');
         } else {
             return Redirect::route('login.get')

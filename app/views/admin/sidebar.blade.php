@@ -7,5 +7,9 @@
     {{ link_to_route('do/users', 'Users', null) }}
     </li>
 
+    <li @if ($page=='analytics') class="active" @endif>
+    {{ link_to_route('do/analytics', 'Analytics', null) }}
+    </li>
+
 
 </ul>

@@ -8,7 +8,10 @@
 
     <h3>Edit user</h3>
 
-    {{ Form::model($user, array('route' => array('do/user', $user->id), 'autocomplete' => 'off')) }}
+    {{ Form::model($user, [
+        'route'        => ['do/user', $user->id],
+        'autocomplete' => 'off'
+        ]) }}
 
     @if ($errors->any())
     {{ implode('', $errors->all('<div class="error">:message</div>')) }}

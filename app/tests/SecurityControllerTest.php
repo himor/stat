@@ -113,9 +113,4 @@ class SecurityControllerTest extends TestCase {
 
         $this->assertFalse(Auth::check());
     }
-
-
-
-
-
 }

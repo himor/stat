@@ -99,3 +99,12 @@ Route::get ('/logout', array(
     'uses' => 'SecurityController@logoutAction'
     )
 );
+
+/**
+ * Analytics
+ */
+Route::get ('do/analytics', array(
+        'as'   => 'do/analytics',
+        'uses' => 'AnalyticsController@indexAction'
+    )
+);

@@ -4,10 +4,11 @@
  * Class AdminController
  * Does all the administrative actions
  * For example: creation of users or tokens
+ *
  * @author Mike Gordo <mgordo@live.com>
  */
-class AdminController extends BaseController {
-
+class AdminController extends BaseController
+{
     protected $layout = 'layout.admin';
 
     /**
@@ -70,7 +71,8 @@ class AdminController extends BaseController {
                 'active'  => Input::get('active') ? true : false
             ]);
 
-            Tokens::create($token);
+            $token = Tokens::create($token);
+            $this->getLog()->addInfo('Created new token id:' . $token->id);
             return Redirect::route('do/tokens');
         }
 
@@ -91,9 +93,45 @@ class AdminController extends BaseController {
     {
         $singleToken = Tokens::find($id);
 
+        $users  = User::where('blocked', false)->get();
+        $users_ = [];
+
+        foreach ($users as $user)
+            $users_[$user->id] = $user->name . " (" . $user->email . ")";
+
         if (is_null($singleToken))
             return Redirect::route('do/tokens')
                 ->with('error', 'Incorrect token id');
+
+        if (Request::isMethod('post')) {
+            $rules = [
+                'user_id' => 'required|numeric',
+                'value'   => 'required|min:20'
+            ];
+
+            $validation = Validator::make(Input::all(), $rules);
+
+            if (!$validation->passes()) {
+                return Redirect::route('do/token', $id)
+                    ->withInput()
+                    ->withErrors($validation)
+                    ->with('message', 'There were validation errors.');
+            }
+
+            $data = Input::all();
+
+            $singleToken->update($data);
+            $singleToken->active = Input::get('active') ? true : false;
+
+            $singleToken->save();
+            $this->getLog()->addInfo('Updated token id:' . $singleToken->id);
+            return Redirect::route('do/tokens');
+        }
+
+        return View::make('admin.edit-token', [
+            'token' => $singleToken,
+            'users' => $users_,
+        ]);
     }
 
     /**
@@ -142,7 +180,8 @@ class AdminController extends BaseController {
                 'blocked'  => Input::get('blocked') ? true : false
             ]);
 
-            User::create($user);
+            $user = User::create($user);
+            $this->getLog()->addInfo('Created new user id:' . $user->id);
             return Redirect::route('do/users');
         }
 
@@ -197,6 +236,7 @@ class AdminController extends BaseController {
                 $singleUser->password = Hash::make(Input::get('password'));
 
             $singleUser->save();
+            $this->getLog()->addInfo('Updated user id:' . $singleUser->id);
             return Redirect::route('do/users');
         }
 

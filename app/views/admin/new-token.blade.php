@@ -6,7 +6,7 @@
 
 @section('block')
 
-    <h3>New user</h3>
+    <h3>New token</h3>
 
     {{ Form::model($token, [
         'route' => ['do/new.token'],
